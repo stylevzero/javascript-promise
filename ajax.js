@@ -32,6 +32,17 @@ function getRepos(){
     return Get(repos_url)
 }
 
+let getUserPromise = getUserInfo();
+
+let getReposPromise = getUserInfo().then(response => {
+    return getRepos(JSON.parse(response).repos_url);
+}).catch(console.log);
+
+
+getReposPromise.then(console.log).catch(console.log)
+
+
+/*
 getUserInfo("stylevzero").then(response => {
     let responseJSON = JSON.parse(response);
     
@@ -40,3 +51,4 @@ getUserInfo("stylevzero").then(response => {
     getRepos(responseJSON.repos_url).then( respos => { console.log(respos)});
 
 }).catch(console.log);
+*/
